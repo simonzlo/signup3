@@ -182,18 +182,32 @@
     }
 
     .icon {
-      background-position: 0 0;
+      background-position: 0 center;
       height: 44px;
       width: 20px;
       display: block;
       position: relative;
-      background-repeat: no-repeat;  
+      background-repeat: no-repeat;
     }
 
 
      .icon_logo {
-       background-image: url('imahes/apple.svg');
+       background-image: url('images/apple.svg');
      }
+
+     .icon_search {
+       background-image: url('images/search.svg');
+       background-position: center 0;
+       background-size: 90% auto;
+     }
+
+     .icon_cart {
+       background-image: url('images/cart.svg');
+       background-position: center -50%
+     }
+
+
+
 
 
     @keyframes colors {
@@ -213,8 +227,8 @@
         <a href="#">TV</a>
         <a href="#">Music</a>
         <a href="#">Support</a>
-        <a href="#">Search</a>
-        <a href="#">Cart</a>
+        <a href="#" class="icon icon_search"></a>
+        <a href="#" class="icon icon_cart"></a>
       </div>
       <div class="menu-search">
         <span></span> <input type="text" name="" value=""> <a href="#"></a>

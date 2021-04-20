@@ -8,6 +8,11 @@
     * {
       box-sizing: border-box;
     }
+
+    *:focus {
+      outline: none;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -115,8 +120,21 @@
       margin-right: 15px;
     }
     .menu-search {
-      display: none;
+      display: flex;
+      justify-content: space-between;
+      width: 480px;
+      margin: 0 auto;
     }
+    .menu-search input {
+      margin: 0;
+      height: 44px;
+      font-size: 17px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: 200p;
+    }
+
     .menu-items {
       display: flex;
       justify-content: space-between;
@@ -201,13 +219,38 @@
        background-size: 90% auto;
      }
 
-     .icon_cart {
-       background-image: url('images/cart.svg');
-       background-position: center -50%
+     span.icon_search {
+       background-position: center 100%;
      }
 
+     .icon_cart {
+       background-image: url('images/cart.svg');
+       background-position: center -50%;
+     }
 
+     .cross {
+       position: absolute;
+       display: block;
+       width: 1px;
+       height: 20px;
+       background: #aaa;
+       top: 12px;
+   }
 
+     .cross-1 {
+       transform: rotate(45deg);
+     }
+      .cross-2 {
+       transform: rotate(-45deg);
+     }
+
+     .hidden {
+       display: none;
+     }
+
+     .fade {
+       opacity: 0;
+     }
 
 
     @keyframes colors {
@@ -215,6 +258,15 @@
       100% {transform: rotate(360deg);}
     }
   </style>
+  <script type="text/javascript">
+    $(document).ready(function) () {
+      $(".menu-items .icon_search, icon_close").click(function () {
+        $(".menu-items, menu-search").toggleClass("hidden");
+
+      })
+    });
+
+  </script>
   </head>
   <body>
     <nav>
@@ -230,8 +282,13 @@
         <a href="#" class="icon icon_search"></a>
         <a href="#" class="icon icon_cart"></a>
       </div>
-      <div class="menu-search">
-        <span></span> <input type="text" name="" value=""> <a href="#"></a>
+      <div class="menu-search hidden">
+         <span class="icon icon_search"></span>
+         <input type="text" name="" value="" placeholder="Search apple.com">
+         <a href="#" class="icon icon_close">
+           <span class="cross cross-1"></span>
+           <span class="cross cross-2"></span>
+         </a>
       </div>
     </nav>
 

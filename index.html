@@ -75,6 +75,7 @@
       width: 100%;
       height: 44px;
       background: rgba(0, 0, 0, 0.8);
+      z-index: 30;
     }
 
     nav > div {
@@ -141,6 +142,19 @@
      color: white;
      font-weight: 200;
    }
+
+   .menu-search * {
+      transition: all .4s ease;
+    }
+    .menu-search.fade > span {
+      transform: translateX(24px);
+    }
+    .menu-search.fade > input {
+      transform: translateX(10px);
+    }
+    .menu-search.fade > a {
+      transform: translateX(4px);
+    }
 
     .menu-items {
      display: flex;
@@ -252,6 +266,20 @@
        transform: rotate(-45deg);
      }
 
+     .black_screen {
+      position: fixed;
+      display: block;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 20;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition: all .6s ease;
+    }
+
      .hidden {
        display: none;
      }
@@ -271,12 +299,19 @@
    // $(".menu-items, .menu-search" ).toggleClass("hidden");
    // })
    $(".menu-items .icon_search, .icon_close").click(function () {
-      $(".black_screen" ).addClass("fade");
+     $(this).parent().addClass("fade");
+     $(".black_screen").addClass("fade");
+
       setTimeout(function () {
-        $(".menu-items, .menu-search" ).toggleClass("hidden");
+        $(".menu-items, .menu-search, .black_screen" ).toggleClass("hidden");
       },500);
       setTimeout(function () {
-        $(".menu-items, .menu-search" ).removeClass("fade");
+        if ($(".menu-items").hasClass("hidden")) {
+          $(".menu-search").removeClass("fade");
+          $(".black_screen").removeClass("fade");
+        } else {
+          $(".menu-items").removeClass("fade");
+        }
       },600);
     })
   });
@@ -284,6 +319,7 @@
   </script>
   </head>
   <body>
+    <div class="black_screen hidden fade"></div>
     <nav>
       <div class="menu-items">
         <a href="#" class="icon icon_logo"></a>
